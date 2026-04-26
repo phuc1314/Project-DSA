@@ -1,5 +1,7 @@
 #pragma once
 #include <string>
+#include "LinkedList.h"
+#include <ctime>
 using namespace std;
 
 class ThongTinXe {
