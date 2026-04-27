@@ -3,12 +3,11 @@
 #include "HashTable.h"
 #include "LinkedList.h"
 #include <iomanip>
+#include <ctime>
 using namespace std;
 
 ThongTinXe** p;
-
 HashTable ht(101);
-
 LinkedList dsChoTrong;
 
 long long tinhTien(long long in, long long out) {
@@ -49,12 +48,9 @@ void traXe() {
     ht.remove(bs);
 
     p[xe.getHang() - 'A'][xe.getViTri() - 1] = ThongTinXe();
-
-
+    dsChoTrong.addSorted(xe.getHang(), xe.getViTri());
     cout << "Tra xe thanh cong!\n";
 }
-
-#include <ctime>
 
 // Ham gui xe
 void guiXe() {
