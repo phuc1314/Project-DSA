@@ -12,14 +12,20 @@ LinkedList dsChoTrong;
 
 long long tinhTien(long long in, long long out) {
     long long d = out - in;
-    long long m = d / 60;
+    double g = d * 1.0/ 3600;
 
-    if (m <= 30) {
-        return 5000;
+    if (g <= 4) {
+        return 6000;
     }
-
-    long long themGio = (m - 30) / 60;
-    return 5000 + themGio * 10000;
+    else if (g > 4 && g <= 8) {
+        return 12000;
+    }
+    else if(g > 8 && g <= 16){
+        return 22000;
+    }
+    else {
+        return 32000;
+    }
 }
 
 void traXe() {
