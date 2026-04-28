@@ -1,4 +1,6 @@
-﻿#include<iostream>
+﻿#include <iostream>
+#include <fstream>
+#include <cstdlib>
 #include"ThongTinXe.h"
 #include "HashTable.h"
 #include "LinkedList.h"
@@ -109,6 +111,53 @@ void guiXe() {
         << endl;
 }
 
+void ghiFile(string tenFile) {
+    ofstream file(tenFile);
+
+    int n = 5, m = 5; // chỉnh theo bãi xe nếu cần
+
+    file << n << " " << m << endl;
+
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            if (p[i][j].getBienSo() != "") {
+                file << p[i][j].getBienSo() << " "
+                     << char('A' + i) << " "
+                     << j + 1 << " "
+                     << p[i][j].getTimeIn() << endl;
+            }
+        }
+    }
+
+    file.close();
+    
+    // sinh biển số random
+string sinhBienSo() {
+    return to_string(rand() % 90 + 10) + "A-" + to_string(rand() % 90000 + 10000);
+}
+
+// sinh dữ liệu test
+void sinhData(string tenFile, int n, int m, int soLuong) {
+    ofstream file(tenFile);
+
+    if (!file) {
+        cout << "Loi mo file!\n";
+        return;
+    }
+
+    file << n << " " << m << endl;
+
+    for (int i = 0; i < soLuong; i++) {
+        string bs = sinhBienSo();
+        char hang = 'A' + rand() % n;
+        int vitri = rand() % m + 1;
+        long long t = 1700000000 + rand() % 100000;
+
+        file << bs << " " << hang << " " << vitri << " " << t << endl;
+    }
+
+    file.close();
+}
 int main() {
 
     return 0;
