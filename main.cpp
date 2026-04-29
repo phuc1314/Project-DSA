@@ -15,7 +15,7 @@ HashTable ht(101);
 LinkedList dsChoTrong;
 
 string sinhBienSo() {
-    return to_string(rand() % 90 + 10) + "A-" + to_string(rand() % 90000 + 10000);
+    return to_string(rand() % 90 + 10) + char('A' + rand() % 26) + "-" + to_string(rand() % 90000 + 10000);
 }
 
 // sinh dữ liệu test
