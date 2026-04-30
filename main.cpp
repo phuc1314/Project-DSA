@@ -41,6 +41,104 @@ void sinhData(string tenFile, int n, int m, int soLuong) {
     file.close();
 }
 
+//KHOI TAO MANG 2D
+void khoiTaoMang() {
+    p = new ThongTinXe * [soHang];
+    for (int i = 0; i < soHang; i++) {
+        p[i] = new ThongTinXe[soCot];
+    }
+}
+
+//TAO DANH SACH CHO TRONG
+void khoiTaoChoTrong() {
+    for (int i = 0; i < soHang; i++) {
+        for (int j = 1; j <= soCot; j++) {
+            dsChoTrong.addSorted(char('A' + i), j);
+        }
+    }
+}
+
+//DOC FILE (CORE NHIEM VU)
+void docFile(string tenFile) {
+    ifstream file(tenFile);
+
+    if (!file) {
+        cout << "Khong mo duoc file!\n";
+        return;
+    }
+
+    file >> soHang >> soCot;
+
+    // 1. cap phat mang
+    khoiTaoMang();
+
+    // 2. khoi tao danh sach trong FULL
+    khoiTaoChoTrong();
+
+    string bs;
+    char hang;
+    int viTri;
+    long long timeIn;
+
+    while (file >> bs >> hang >> viTri >> timeIn) {
+
+        int row = hang - 'A';
+        int col = viTri - 1;
+
+        // validate
+        if (row < 0 || row >= soHang || col < 0 || col >= soCot)
+            continue;
+
+        // tranh ghi de
+        if (p[row][col].getBienSo() != "")
+            continue;
+
+        // tranh trung bien so
+        ThongTinXe tmp;
+        if (ht.find(bs, tmp))
+            continue;
+
+        // tao xe
+        ThongTinXe xe(bs, hang, viTri, timeIn);
+
+        // cap nhat mang
+        p[row][col] = xe;
+
+        // them vao hash
+        ht.insert(xe);
+    }
+
+    file.close();
+
+    // Build lại danh sách chỗ trống
+    LinkedList newList;
+
+    for (int i = 0; i < soHang; i++) {
+        for (int j = 0; j < soCot; j++) {
+            if (p[i][j].getBienSo() == "") {
+                newList.addSorted(char('A' + i), j + 1);
+            }
+        }
+    }
+
+    dsChoTrong = newList; // overwrite list cũ
+}
+
+//  DEBUG MANG 
+void debugMang() {
+    cout << "\n=== TRANG THAI BAI XE ===\n";
+    for (int i = 0; i < soHang; i++) {
+        for (int j = 0; j < soCot; j++) {
+            if (p[i][j].getBienSo() == "")
+                cout << "[ ] ";
+            else
+                cout << "[X] ";
+        }
+        cout << endl;
+    }
+}
+
+
 void ghiFile(string tenFile) {
     ofstream file(tenFile);
     file << soHang << " " << soCot << endl;
@@ -161,6 +259,12 @@ void guiXe() {
         << setw(2) << now->tm_min << ":"
         << setw(2) << now->tm_sec
         << endl;
+}
+
+//  HIEN THI 
+void xemChoTrong() {
+    cout << "\n=== DANH SACH CHO TRONG ===\n";
+    dsChoTrong.hienThi();
 }
 
 int main() {
