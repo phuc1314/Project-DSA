@@ -22,7 +22,6 @@ HashTable    ht(101);
 LinkedList   dsChoTrong;
 
 // ============================================================
-//  TINH TIEN (giu nguyen cong thuc cua team)
 //  <= 4h: 6.000d | 4-8h: 12.000d | 8-16h: 22.000d | >16h: 32.000d
 // ============================================================
 long long tinhTien(long long in, long long out) {
