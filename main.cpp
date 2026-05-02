@@ -174,7 +174,7 @@ bool kiemTraBienSo(string bs) {
 
     if (bs.length() > 15) return false;
 
-    if (bs.length() < 7 || bs.length() > 8) return false;
+    if (bs.length() < 8 || bs.length() > 9) return false;
     if (!isdigit(bs[0]) || !isdigit(bs[1])) return false;
     if (!isalpha(bs[2])) return false;
     if (bs[3] != '-') return false;
