@@ -16,7 +16,7 @@ using namespace chrono;
 //  BIEN TOAN CUC
 ThongTinXe** p = nullptr;
 int soHang = 0, soCot = 0;
-HashTable ht(101);
+HashTable ht(3079);
 LinkedList dsChoTrong;
 
 //  SINH DU LIEU TEST (dung de danh gia hieu nang)
