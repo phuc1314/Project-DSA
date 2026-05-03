@@ -186,12 +186,12 @@ bool kiemTraBienSo(string bs) {
     return true;
 }
 
-//  <= 4h: 6.000d | 4-8h: 12.000d | 8-16h: 22.000d | >16h: 32.000d
+//  <= 4h: 6.000d | 4-8h: 12.000d | 8-16h: 22.000d | 16h - 24h: 32.000d | > 24h: phạt 1h: 2000;
 long long tinhTien(long long in, long long out) {
     long long d = out - in;
     double g = d * 1.0 / 3600;
 
-    if (g <= 4) {
+    if (g > 0 && g <= 4) {
         return 6000;
     }
     else if (g > 4 && g <= 8) {
@@ -200,8 +200,12 @@ long long tinhTien(long long in, long long out) {
     else if (g > 8 && g <= 16) {
         return 22000;
     }
-    else {
+    else if (g > 16 && g <= 24) {
         return 32000;
+    }
+    else {
+        int themgio = g - 24;
+        return 32000 + themgio * 2000;
     }
 }
 
