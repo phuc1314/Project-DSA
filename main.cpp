@@ -237,8 +237,10 @@ void traXe() {
     cout << "\n===== HOA DON =====\n";
     cout << "Bien so: " << xe.getBienSo() << endl;
     cout << "Vi tri: " << xe.getHang() << xe.getViTri() << endl;
-    cout << "Thoi gian vao: " << in.tm_hour << ":" << in.tm_min << ":" << in.tm_sec << endl;
-    cout << "Thoi gian ra: " << out.tm_hour << ":" << out.tm_min << ":" << out.tm_sec << endl;
+    cout << "Thoi gian vao: " << in.tm_hour << ":" << in.tm_min << ":" << in.tm_sec << " ";
+    cout << in.tm_mday << "/" << in.tm_mon + 1 << "/" << in.tm_year + 1900 << endl;
+    cout << "Thoi gian ra: " << out.tm_hour << ":" << out.tm_min << ":" << out.tm_sec << " ";
+    cout << out.tm_mday << "/" << out.tm_mon + 1 << "/" << out.tm_year + 1900 << endl;
     cout << "Tien: " << tien << endl;
 
     ht.remove(bs);
